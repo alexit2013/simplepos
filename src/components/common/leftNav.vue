@@ -1,10 +1,14 @@
 <template>
   <div class="left-nav">
       <ul>
-          <li>
-              <i class="icon iconfont icon-31goumaichongzhi"></i>
-              <div>收银</div>
-          </li>
+          <router-link to="/" tag="li">
+                <i class="icon iconfont icon-31goumaichongzhi"></i>
+                <div>首页</div>
+            </router-link>
+            <router-link to="/pos" tag="li">
+                <i class="icon iconfont icon-31goumaichongzhi"></i>
+                <div>收银</div>
+            </router-link>
           <li>
               <i class="icon iconfont icon-dianpu"></i>
               <div>店铺</div>
@@ -54,5 +58,10 @@ export default {
         text-align: center;
         border-bottom: 1px solid #20a0ff;
         padding: 10px;
+        cursor: pointer;
+    }
+    .left-nav li:hover{
+        background-color: #a8cde8;
+        color: #1d8ce0;
     }
 </style>

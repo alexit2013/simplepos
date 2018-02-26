@@ -67,7 +67,7 @@
             <el-col :span='7' class="pos-order" id="order-list">
                 <el-tabs>
                     <el-tab-pane label="点餐">
-                        <el-table :data="tableData" border stripe style="width: 100%" >
+                        <el-table :data="tableData" border stripe style="width: 100%" max-height="460">
                             <el-table-column prop="goodsName" label="商品"></el-table-column>
                             <el-table-column prop="count" label="数量"></el-table-column>
                             <el-table-column prop="price" label="金额"></el-table-column>
@@ -80,12 +80,12 @@
                         </el-table>
                         <div class="totalDiv">
                             <small>数量</small>: {{totalCount}}
-                            <small>金额</small>: {{totalMoney}}
+                            <small>金额</small>: {{totalMoney}} 元
                         </div>
                         <div class="div-btn">
-                            <el-button size="warning">挂单</el-button>
-                            <el-button size="danger" @click="delAllGoods()">删除</el-button>
-                            <el-button size="success" @click="checkout()" >结账</el-button>
+                            <el-button size="mini" type="warning">挂单</el-button>
+                            <el-button size="mini" type="danger" @click="delAllGoods()">删除</el-button>
+                            <el-button size="mini" type="success" @click="checkout()" >结账</el-button>
                         </div>
                     </el-tab-pane>
                     <el-tab-pane label="挂单">
@@ -102,6 +102,7 @@
 
 <script>
 import axios from 'axios';
+import { Loading } from 'element-ui';
 export default {
   name: 'pos',
   data(){
@@ -113,14 +114,24 @@ export default {
         type2Goods:[],
         type3Goods:[],
         totalMoney: 0,
-        totalCount: 0
+        totalCount: 0,
+        loading: true
       }
   },
   created: function(){
+      let loading1 = this.$loading({
+          target: ".often-goods-list",
+          background: "#333",
+          fullscreen: false
+      })
       axios.get('http://jspang.com/DemoApi/oftenGoods.php')
       .then(reponse=>{
         // console.log(reponse);
         this.oftenGoods = reponse.data;
+        // this.loading = false;
+        this.$nextTick(()=>{
+            loading1.close();
+        })
       })
       .catch(error=>{
           alert('网络错误，无法访问');
@@ -139,7 +150,7 @@ export default {
       .catch(error=>{
         //   console.log(error);
           alert('网络错误，不能访问');
-      })
+      });
   },
   methods:{
     // 添加订单列表的方法
@@ -219,12 +230,13 @@ export default {
 .pos-order{
     background-color: #f9fafc;
     border-left: 1px solid #c0ccda;
+    padding: 10px;
 }
 .div-btn{
     margin-top: 10px;
 }
 .often-goods{
-
+    height: 200px;
 }
 .title{
     height: 20px;
@@ -247,6 +259,7 @@ export default {
 }
 .goods-type{
     clear: both;
+    padding: 10px;
 }
 .cookList li{
     list-style: none;
