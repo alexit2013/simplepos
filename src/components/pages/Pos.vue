@@ -200,22 +200,36 @@ export default {
     },
     // 删除所有商品
     delAllGoods(){
-        this.tableData = [];
-        this.totalMoney = 0;
-        this.totalCount = 0;
-    },
-    // 结账
-    checkout(){
-        if (this.totalCount!=0){
+        this.$confirm('结账确认', '提示', {
+            confirmButtonText: '结账',
+            cancelButtonText: '取消',
+            type: 'warning'
+        }).then(()=>{
             this.tableData = [];
             this.totalMoney = 0;
             this.totalCount = 0;
             this.$message({
-                message: '结账成功！',
+                message: '删除成功！',
                 type: 'success'
             });
-        } else {
-            this.$message.error('不能结账o');
+        })
+    },
+    // 结账
+    checkout(){
+        if (this.totalCount!=0){
+            this.$confirm('结账确认', '提示', {
+                confirmButtonText: '结账',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(()=>{
+                this.tableData = [];
+                this.totalMoney = 0;
+                this.totalCount = 0;
+                this.$message({
+                    message: '结账成功！',
+                    type: 'success'
+                });
+            })
         }
     }
   },
