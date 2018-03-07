@@ -32,7 +32,6 @@ export default {
   width: 95%;
   background-color: #eff2f7;
   height: 100%;
-  overflow: hidden;
 }
 .router-link-exact-active{
   background-color: #a8cde8;

@@ -2,33 +2,33 @@
   <div class="left-nav">
       <ul>
           <router-link to="/" tag="li">
-                <i class="icon iconfont icon-31goumaichongzhi"></i>
-                <div>首页</div>
-            </router-link>
-            <router-link to="/pos" tag="li">
-                <i class="icon iconfont icon-31goumaichongzhi"></i>
-                <div>收银</div>
-            </router-link>
-          <li>
-              <i class="icon iconfont icon-dianpu"></i>
-              <div>店铺</div>
-          </li>
-          <li>
-              <i class="icon iconfont icon-hanbao"></i>
-              <div>商品</div>
-          </li>
-          <li>
-              <i class="icon iconfont icon-31huiyuanqia"></i>
-              <div>会员</div>
-          </li>
-          <li>
-              <i class="icon iconfont icon-31chanpincanshu"></i>
-              <div>统计</div>
-          </li>
-          <li>
-              <i class="icon iconfont icon-gongnengjianyi"></i>
-              <div>设置</div>
-          </li>
+            <i class="icon iconfont icon-31goumaichongzhi"></i>
+            <div>首页</div>
+          </router-link>
+          <router-link to="/pos" tag="li">
+            <i class="icon iconfont icon-31goumaichongzhi"></i>
+            <div>收银</div>
+          </router-link>
+          <router-link to="/shop" tag="li">
+            <i class="icon iconfont icon-dianpu"></i>
+            <div>店铺</div>
+          </router-link>
+          <router-link to="/commodity" tag="li">
+            <i class="icon iconfont icon-hanbao"></i>
+            <div>商品</div>
+          </router-link>
+          <router-link to="/vip" tag="li">
+            <i class="icon iconfont icon-31huiyuanqia"></i>
+            <div>会员</div>
+          </router-link>
+          <router-link to="/count" tag="li">
+            <i class="icon iconfont icon-31chanpincanshu"></i>
+            <div>统计</div>
+          </router-link>
+          <router-link to="/setting" tag="li">
+            <i class="icon iconfont icon-gongnengjianyi"></i>
+            <div>设置</div>
+          </router-link>
       </ul>
   </div>
 </template>
