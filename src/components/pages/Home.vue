@@ -22,6 +22,7 @@
 </template>
 
 <script>
+  import axios from 'axios';
 export default {
   data () {
     var validateUserName = (rule, value, callback) => {
@@ -57,19 +58,26 @@ export default {
   },
   methods: {
     submitForm(formName){
-      this.loading = true;
+//      this.loading = true;
       this.$refs[formName].validate((valid) => {
         if(valid){
-          setTimeout(() => {
-            this.loading = false;
-            this.$message({
-            showClose: true,
-            message: 'login success!',
-            type: 'success'
+          axios.post('http://localhost:3000/test', {
+            name: this.ruleForm2.username,
+            pass: this.ruleForm2.password
+          })
+            .then(function (res) {
+              console.log(res)
             })
-            this.islogin = true;
-          },2000)
-          
+//          setTimeout(() => {
+//            this.loading = false;
+//            this.$message({
+//            showClose: true,
+//            message: 'login success!',
+//            type: 'success'
+//            })
+//            this.islogin = true;
+//          },2000)
+
         } else {
           return false;
         }

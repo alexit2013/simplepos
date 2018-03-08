@@ -6,12 +6,15 @@ import Shop from '@/components/pages/Shop'
 import Commodity from '@/components/pages/Commodity'
 import Vip from '@/components/pages/Vip'
 
-Vue.use(Router)
+import Login from '@/components/pages/Login';
+
+Vue.use(Router);
 
 export default new Router({
   routes: [
+    { path: '/', component: Login },
     {
-      path: '/',
+      path: '/hello',
       name: 'hello',
       component: Home
     },
