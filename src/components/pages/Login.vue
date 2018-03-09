@@ -10,15 +10,15 @@
             <Input type="password" v-model="formCustom.pass" placeholder="密码" clearable></Input>
         </FormItem>
         <FormItem style="float: right;">
-          <Button type="primary" @click="handleSubmit()" :loading="loading">登陆</Button>
-        </FormItem>  
+          <Button type="primary" @click="handleSubmit('formCustom')" :loading="loading">登陆</Button>
+        </FormItem>
       </Form>
     </Col>
   </Row>
 </template>
 
 <script>
-import axios from 'axios';
+  import storage from '../../utils/storage';
   export default {
     data () {
       const validateName = (rule, value, callback) => {
@@ -52,27 +52,14 @@ import axios from 'axios';
       }
     },
     methods: {
-      handleSubmit(){
-        this.loading = true;
-        
-          axios.post('http://localhost:3000/login', {
-            name: this.formCustom.name,
-            pass: this.formCustom.pass
-          })
-          .then((result) => {
-            if(result.data.success){
-              this.$Message.success('登陆成功！')
-            } else {
-              this.$Message.error(result.data.message);
-            }
-            console.log(result);
-            this.loading = false;
-          })
-          .catch(err => {
-            console.log(err);
-          })
-        }
-      
+      handleSubmit(name){
+        this.$refs[name].validate( valid => {
+          if (valid){
+            console.log('login');
+            this.$router.push('/home')
+          }
+        });
+      }
     }
   }
 </script>

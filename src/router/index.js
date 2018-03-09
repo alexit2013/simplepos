@@ -10,12 +10,13 @@ import Login from '@/components/pages/Login';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
-    { path: '/', component: Login },
+    { path: '/', redirect: '/login' },
+    { path: '/login', name: 'login', component: Login },
     {
-      path: '/hello',
-      name: 'hello',
+      path: '/home',
+      name: 'home',
       component: Home
     },
     {
@@ -40,3 +41,22 @@ export default new Router({
     }
   ]
 })
+
+// 路由守卫
+router.beforeEach((to, from, next) => {
+  console.log('进入导航守卫')
+  const nextRoute = ['/home'];
+  let isLogin = JSON.parse(window.localStorage.getItem('userInfo'));
+  console.log(isLogin);
+  if(nextRoute.indexOf(to.name) >= 0){
+    if(isLogin == '' || isLogin == null){
+      // this.$Message.info('请先登陆!');
+      router.push({name: 'login'})
+    } else {
+      console.log('登陆')
+    }
+  }
+  next()
+});
+
+export default router;
